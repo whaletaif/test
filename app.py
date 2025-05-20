@@ -1,3 +1,12 @@
+from appwrite.client import Client
+from appwrite.services.users import Users
+from appwrite.services.databases import Databases 
+
+client = Client()
+client.set_endpoint('https://fra.cloud.appwrite.io/v1')
+client.set_project('682c6eb5000182ea405a')
+client.set_key('standard_b92cdf5a2cf7b3a22b3c08b75a127ffc213e8f606538fbc2c5fd8d6050ddc7475e692b32658ba890e353ae3fd9ab5e2e2c640ef3b2697632ff31980ff7c37e1d26faba98a82daff440b70ba289525025a1604f05bc602dfdbfad4d9c2ea1137d4a05e22aaa70a86a3804ae77761888b0fbf6730e9d6609ea2f12cfebc09ba500')
+
 from flask import Flask, render_template, request, jsonify, send_file, send_from_directory
 from maps import maps_scraper
 from flask_socketio import SocketIO, emit
