@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar">
+<link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='scraper.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='footer.css') }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data scraper</title>
+    <div>
+        <img class="logo" src="{{ url_for('static', filename='logo.png') }}" style="height: 50px;
+           width: 50px;
+           float: right;
+           padding-right: 30px; padding-top: 10px;" />
+        <nav>
+            <ul>
+                <li><a href="#"> من نحن؟ </a></li>
+                <li><a href="{{ url_for('index') }}"> الصفحة الرئيسية</a></li>
+            </ul>
+
+
+            <div class="login-button" style=" align-self: flex-end; margin-right: 1700px ;">
+                <a href="{{ url_for('signup') }}">تسجيل</a>
+                <a href="{{ url_for('signup') }}" ><button>تسجيل الدخول</button></a>
+            </div>
+            <div class="line"></div>
+        </nav>
+    </div>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+
+<body>
+    
+
+    <div class="info-card">
+        <div id="button-content">
+            <button id="schedule-button"> جدولة السحب </button>
+            <button id="api-button"> API </button>
+        </div>
+
+        <div id="api-popup" class="popup">
+            <div class="popup-content">
+                <span class="close-button">&times;</span>
+                <h2>API</h2>
+                <p> ارسال العوامل باستخدام  API:</p>   
+                <div class="copy-link-container">
+                    <input type="text" value='curl -X POST http://127.0.0.1:5000/api/scraper-maps ^' id="link1" readonly>
+                    <button class="copy-button" data-target="link1">
+                        <img src="{{ url_for('static', filename='copy.png') }}">
+                    </button>
+                </div>
+                <div class="copy-link-container">
+                    <input type="text" value='-H "Authorization: Bearer token123" ^' id="link2" readonly>
+                    <button class="copy-button" data-target="link2">
+                        <img src="{{ url_for('static', filename='copy.png') }}">
+                    </button>
+                </div>
+                <div class="copy-link-container">
+                    <input type="text" value='-H "Content-Type: application/json" ^' id="link3" readonly>
+                    <button class="copy-button" data-target="link3">
+                        <img src="{{ url_for('static', filename='copy.png') }}">
+                    </button>
+                </div>
+                <p>  غير a,b,c,d بعواملك الخاصه. الحد الاقصى و proxy  اختياريين.</p>
+                <div class="copy-link-container">
+                    <input type="text" value='-d "{\"keyword\": \"a\", \"location\": \"b\", \"limit\": \"c\", \"proxy\": \"d\"}"' id="link4" readonly>
+                    <button class="copy-button" data-target="link4">
+                        <img src="{{ url_for('static', filename='copy.png') }}">
+                    </button>
+                </div>
+                <p>  لتحصل على نتائج من API:</p>
+                <p> استخدم اسم الملف من النتائج </p>
+                <div class="copy-link-container">
+                    <input type="text" value='curl -X GET "http://127.0.0.1:5000/api/download?filename=filename.xlsx" ^' id="link5" readonly>
+                    <button class="copy-button" data-target="link5">
+                        <img src="{{ url_for('static', filename='copy.png') }}">
+                    </button>
+                </div>
+                <div class="copy-link-container">
+                    <input type="text" value='-H "Authorization: Bearer token123" ^' id="link6" readonly>
+                    <button class="copy-button" data-target="link6">
+                        <img src="{{ url_for('static', filename='copy.png') }}">
+                    </button>
+                </div>
+                <div class="copy-link-container">
+                    <input type="text" value='-o "any_file_name.xlsx"' id="link7" readonly>
+                    <button class="copy-button" data-target="link7">
+                        <img src="{{ url_for('static', filename='copy.png') }}">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="schedule-popup" class="popup">
+            <div class="popup-content">
+                <span class="close-schedule-button">&times;</span>
+                <h1 id="sch">جدولة السحب</h1>
+                <div class="lines"></div>
+                <input type="text" placeholder=" اسم الجدوله ">
+                <textarea id="description" placeholder="وصف" name="description" rows="5" cols="50"></textarea>
+                <select id="schedule" name="schedule">
+                    <option value="daily">يومياً</option>
+                    <option value="monthly">شهرياً</option>
+                    <option value="yearly">سنوياً</option>
+                </select>
+                <button> ابدأ السحب </button>
+            </div>
+        </div>
+
+        <div class="text-content">
+            <h2>استخراج من خرائط قوقل</h2>
+            <p> .يمكنك سحب ١٠٠ مكان واكثر ب استخدام كلمات مفتاحيه ، اقسام ، مواقع. احصل على العناوين والبيانات والخ </p>
+        </div>
+        <div class="icon-container">
+            <img src="{{ url_for('static', filename='googlemaps.png') }}" >
+        </div>
+    </div>
+
+
+    <div class="tabs">
+
+        <div class="tab-2">
+            <label for="tab2-3"> رسائل </label>
+            <input id="tab2-3" name="tabs-two" type="radio">
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th> الرسائل </th>
+                        </tr>
+                    </thead>
+                    <tbody id="error-rows">
+                        <!-- Logs will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="tab-2">
+            <label for="tab2-2">العمليات السابقه </label>
+            <input id="tab2-2" name="tabs-two" type="radio">
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>حجم الملف</th>
+                            <th>النوع</th>
+                            <th>المدة</th>
+                            <th>وقت النهاية</th>
+                            <th>وقت البداية</th>
+                            <th>العدد</th>
+                            <th class="wide-column">الوصف</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data-rows">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="tab-2">
+            <label for="tab2-1"> ادخال بيانات السحب </label>
+            <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+            <div>
+                <p> لاستخراج بيانات جهات الاتصال من أماكن جوجل، ما عليك سوى إدخال مصطلح البحث، وإضافة الموقع، و عدد
+                    الأماكن المراد استخراجها. يحتوي قسم الفلاتر على ميزات إضافية متنوعة، وفلاتر، وخيارات فرز </p>
+                <p></p>
+                <p>الأقسام التي تحمل علامة النجمة* هي مجرد طرق بديلة لبدء الإدخال ( معلمات الموقع الجغرافي، المضلعات،
+                    عناوين URL). يمكن دمجها مع أي من الميزات وخيارات الفرز من قسم "الفلاتر" </p>
+
+                <form id="scraper-form" method="POST" action="/scraper-maps">
+                    <h3> ادخل عنوان بحثك </h3>
+                    <div class="loc">
+                        <input type="text" name="keyword" placeholder="مطعم">
+                    </div>
+                    <div class="loc">
+                        <h3 id="loca"> الموقع </h3>
+                        <input type="text" name="location" placeholder="الرياض">
+                    </div>
+                    <div class="loc">
+                        <h3 id="dataco"> البيانات </h3>
+                        <input type="text" name="limit" placeholder="50. Leave blank for no max limit">
+                    </div>
+                    <div class="loc">
+                        <h3 id="proxy"> Proxy (اختياري) </h3>
+                        <input type="text" name="proxy" placeholder="http://username:password@proxyserver:port">
+                    </div>
+                    <!-- <div class="lang">
+                        <h3 id="lang"> اللغة </h3>
+                        <input type="text" placeholder="العربية">
+                    </div> -->
+                    <button type="submit" style="background-color: transparent; border: 1px solid #075E72; padding: 15px; border-radius: 5px;
+                       margin-top: 50px; color: #075E72 ; font-size: 15px; float: right; margin-right: 10px;"> بدأ السحب  </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+ <footer>
+
+    <nav class="footer-nav">
+        <img src="static/logo.png" alt="بحث" class="logo-icon-footer">
+        <a href="{{ url_for('index') }}">الرئيسية</a>
+        <a href="#">من نحن؟</a>
+      </nav>
+
+    <div class="footer-contact">
+      <p>تواصل معنا</p>
+      <p>📞 +0555555</p>
+      <div class="social-icons">
+        <a href="#"><img src="static/insta.png" alt="Instagram"></a>
+        <a href="#"><img src="static/email.png" alt="Email"></a>
+        <a href="#"><img src="static/twitter.png" alt="Twitter"></a>
+      </div>
+    </div>
+   
+  </footer>
+  
+</html>

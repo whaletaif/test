@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='header.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mainpage.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='footer.css') }}">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data scraper</title>
+    <div class="start">
+        <nav>
+            <img src="static/logo.png" style="    height: 50px;
+             width: 50px;
+             float: right;
+             padding-right: 30px;" />
+            <ul>
+                <li><a href="#"> من نحن؟ </a></li>
+                <li><a href="{{ url_for('index') }}"> الصفحة الرئيسية</a></li>
+            </ul>
+
+            <div class="login-button" style=" align-self: flex-end; margin-right: 1700px ; display: flex; align-items: center;">
+                <a href="{{ url_for('signup') }}" >تسجيل</a>
+                <a href="{{ url_for('signup') }}" ><button>تسجيل الدخول</button></a>
+            </div>
+        </nav>
+        <div class="line"></div>
+        <h1>نموذجك الأولي لاستخراج البيانات
+            من المواقع العربية والعالمية</h1>
+        <p>هنا نوفر بيئة متطورة للمطورين لبناء ونشر أدوات ذكية لسحب البيانات، والأتمتة، وحلول الذكاء الاصطناعي
+            كل ذلك من خلال أدوات قابلة للتخصيص نطلق عليها “الممثلين”</p>
+        <div class="search-container">
+            <div class="search">
+                <input type="text" class="search-input" placeholder="... ابحث هنا ">
+                <button class="search-button">
+                    <img src="static/search.png" alt="بحث">
+                </button>
+            </div>
+        </div>
+    </div>
+</head>
+
+<body>
+    <div class="tabs">
+
+        <div class="tab-2">
+            <label for="tab2-6"> توصل اجتماعي </label>
+            <input id="tab2-6" name="tabs-two" type="radio">
+            <div class="card">
+                <a href="" class="card-link">
+                    <div class="card-container">
+                        <div class="card-content">
+                            <div class="text-content">
+                                <h3 class="card-title"> ؟؟؟ </h3>
+                                <p class="card-description"> ؟؟؟؟ </p>
+                            </div>
+                            <div class="image-container">
+                                <img class="card-icon" src="" alt=" ؟؟ ">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="tab-2">
+            <label for="tab2-5"> اخبار </label>
+            <input id="tab2-5" name="tabs-two" type="radio">
+            <div class="card">
+                <a href="" class="card-link">
+                    <div class="card-container">
+                        <div class="card-content">
+                            <div class="text-content">
+                                <h3 class="card-title"> ؟؟؟ </h3>
+                                <p class="card-description"> ؟؟؟؟ </p>
+                            </div>
+                            <div class="image-container">
+                                <img class="card-icon" src="" alt=" ؟؟ ">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="tab-2">
+            <label for="tab2-4"> وظائف </label>
+            <input id="tab2-4" name="tabs-two" type="radio">
+            <div class="card">
+                <a href="" class="card-link">
+                    <div class="card-container">
+                        <div class="card-content">
+                            <div class="text-content">
+                                <h3 class="card-title"> ؟؟؟ </h3>
+                                <p class="card-description"> ؟؟؟؟ </p>
+                            </div>
+                            <div class="image-container">
+                                <img class="card-icon" src="" alt=" ؟؟ ">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="tab-2">
+            <label for="tab2-3"> تجارة الكترونية </label>
+            <input id="tab2-3" name="tabs-two" type="radio">
+            <div class="card">
+                <a href="" class="card-link">
+                    <div class="card-container">
+                        <div class="card-content">
+                            <div class="text-content">
+                                <h3 class="card-title"> استخراج من حراج </h3>
+                                <p class="card-description"> استخرج البيانات من مئات المتاجر بسرعة. استخرج بيانات
+                                    المتاجر حسب
+                                    الكلمات المفتاحية، والفئات، والموقع، وعناوين المتاجر، وفلاتر أخرى. احصل على المتاجر،
+                                    ومعلومات الاتصال، والأسعار والمزيد. </p>
+                            </div>
+                            <div class="image-container">
+                                <img class="card-icon" src="static/haraj.jpeg" alt=" حراج ">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="tab-2">
+            <label for="tab2-2"> سفر </label>
+            <input id="tab2-2" name="tabs-two" type="radio">
+            <div class="card">
+                <a href="{{ url_for('scraper') }}" class="card-link">
+                    <div class="card-container">
+                        <div class="card-content">
+                            <div class="text-content">
+                                <h3 class="card-title"> استخراج من خرائط </h3>
+                                <p class="card-description"> استخرج البيانات من مئات الأماكن بسرعة. استخرج بيانات خرائط
+                                    جوجل
+                                    حسب
+                                    الكلمات المفتاحية، والفئات، والموقع، وعناوين المواقع، وفلاتر أخرى. احصل على
+                                    العناوين،
+                                    ومعلومات الاتصال، وساعات العمل، والأسعار والمزيد. </p>
+                            </div>
+                            <div class="image-container">
+                                <img class="card-icon" src="static/googlemaps.png" alt=" خرائط جوجل">
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="tab-2">
+            <label for="tab2-1"> الكل </label>
+            <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+            <div class="cards-g">
+                <div class="card">
+                    <a href="{{ url_for('info') }}" class="card-link">
+                        <div class="card-container">
+                            <div class="card-content">
+                                <div class="text-content">
+                                    <h3 class="card-title"> استخراج من خرائط </h3>
+                                    <p class="card-description"> استخرج البيانات من مئات الأماكن بسرعة. استخرج بيانات
+                                        خرائط جوجل
+                                        حسب
+                                        الكلمات المفتاحية، والفئات، والموقع، وعناوين المواقع، وفلاتر أخرى. احصل على
+                                        العناوين،
+                                        ومعلومات الاتصال، وساعات العمل، والأسعار والمزيد. </p>
+                                </div>
+                                <div class="image-container">
+                                    <img class="card-icon" src="static/googlemaps.png" alt=" خرائط جوجل">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <a href="" class="card-link">
+                        <div class="card-container">
+                            <div class="card-content">
+                                <div class="text-content">
+                                    <h3 class="card-title"> استخراج من حراج </h3>
+                                    <p class="card-description"> استخرج البيانات من مئات المتاجر بسرعة. استخرج بيانات
+                                        المتاجر حسب
+                                        الكلمات المفتاحية، والفئات، والموقع، وعناوين المتاجر، وفلاتر أخرى. احصل على
+                                        المتاجر،
+                                        ومعلومات الاتصال، والأسعار والمزيد. </p>
+                                </div>
+                                <div class="image-container">
+                                    <img class="card-icon" src="static/haraj.jpeg" alt=" حراج ">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <script src="static/script.js"></script>
+</body>
+
+ <footer>
+
+    <nav class="footer-nav">
+        <img src="static/logo.png" alt="بحث" class="logo-icon-footer">
+        <a href="{{ url_for('index') }}">الرئيسية</a>
+        <a href="#">من نحن؟</a>
+      </nav>
+
+    <div class="footer-contact">
+      <p>تواصل معنا</p>
+      <p>📞 +0555555</p>
+      <div class="social-icons">
+        <a href="#"><img src="static/insta.png" alt="Instagram"></a>
+        <a href="#"><img src="static/email.png" alt="Email"></a>
+        <a href="#"><img src="static/twitter.png" alt="Twitter"></a>
+      </div>
+    </div>
+   
+  </footer>
+  
+</html>
